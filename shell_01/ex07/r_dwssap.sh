@@ -1,7 +1,11 @@
-cat /etc/passwd |
-sed -n 'n;p' |
-cut -d':' -f1 |
-rev |
-sort -r |
-awk "NR>=$FT_LINE1 && NR<=$FT_LINE2" |
-sed ':a;N;$!ba;s/\n/_, /g' | sed 's/$/./'
+cat /etc/passwd | 
+sed '/^#/d' | 
+sed -n 'n;p' | 
+cut -d ':' -f 1 | 
+rev | 
+sort -r | 
+sed -n "$FT_LINE1,$FT_LINE2 p" | 
+tr '\n' ' ' | 
+sed 's/ /, /g' | 
+sed 's/, $/./' | 
+tr -d '\n'

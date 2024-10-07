@@ -1,1 +1,1 @@
-ip -brief link | awk '{print $3}'
+ip -brief link | awk '$2 == "UP" {print $3}'

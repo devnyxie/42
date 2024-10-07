@@ -43,5 +43,4 @@ void	ft_print_comb(void)
 		}
 		i++;
 	}
-	write(1, "\n", 1);
 }
