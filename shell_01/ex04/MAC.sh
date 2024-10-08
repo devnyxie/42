@@ -1,1 +1,1 @@
-ip -brief link | awk '$2 == "UP" {print $3}'
+ifconfig | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'
