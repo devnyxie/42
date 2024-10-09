@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ft.c                                            :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tafanasi <tafanasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/08 03:03:44 by tafanasi          #+#    #+#             */
-/*   Updated: 2024/10/08 03:03:50 by tafanasi         ###   ########.fr       */
+/*   Created: 2024/10/08 23:47:57 by tafanasi          #+#    #+#             */
+/*   Updated: 2024/10/08 23:49:04 by tafanasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include <stdio.h>
 
-void	ft_ft(int *nbr)
+void	ft_putstr(char *str)
 {
-	*nbr = 42;
+	int	index;
+
+	index = 0;
+	while (str[index] != '\0')
+	{
+		write(1, &str[index], 1);
+		index++;
+	}
 }
