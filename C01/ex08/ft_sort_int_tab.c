@@ -12,15 +12,6 @@
 
 #include <stdio.h>
 
-void	swap_vars(int *a, int *b)
-{
-	int	temp;
-
-	temp = *a;
-	*a = *b;
-	*b = temp;
-}
-
 // swap = -1 -> false
 // swap >= 0 -> true
 void	ft_sort_int_tab(int *tab, int size)
