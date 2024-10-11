@@ -6,7 +6,7 @@
 /*   By: tafanasi <tafanasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 17:14:02 by tafanasi          #+#    #+#             */
-/*   Updated: 2024/10/10 17:55:53 by tafanasi         ###   ########.fr       */
+/*   Updated: 2024/10/11 04:01:45 by tafanasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int ft_strlen(char *str)
 	}
 	return(count);
 }
-/*
+
 int main(void){
 	char *str = "Zdravstvu  jte";
 	int count = ft_strlen(str);
@@ -31,4 +31,4 @@ int main(void){
 	printf("The length of the string '%s' is: %d\n", str, count);
 	return(0);
 }
-*/
+
