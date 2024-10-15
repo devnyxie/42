@@ -1,12 +1,27 @@
-char *ft_strlowcase(char *str){
-    int i;
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strlowcase.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tafanasi <tafanasi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/15 19:33:16 by tafanasi          #+#    #+#             */
+/*   Updated: 2024/10/15 19:34:14 by tafanasi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-    i = 0;
-    while(str[i] != '\0'){
-        if (str[i] >= 65 && str[i] <= 90) { 
-            str[i] = str[i] + 32;
-        }
-        i++;
-    }
-    return(str);
+char	*ft_strlowcase(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] >= 65 && str[i] <= 90)
+		{
+			str[i] = str[i] + 32;
+		}
+		i++;
+	}
+	return (str);
 }

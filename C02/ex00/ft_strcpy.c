@@ -6,11 +6,11 @@
 /*   By: devnyxie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 03:08:56 by devnyxie          #+#    #+#             */
-/*   Updated: 2024/10/14 03:20:32 by devnyxie         ###   ########.fr       */
+/*   Updated: 2024/10/15 19:09:13 by tafanasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	ft_strcpy(char *dest, const char *src)
+char	*ft_strcpy(char *dest, const char *src)
 {
 	char	*ptr;
 
@@ -20,5 +20,5 @@ char	ft_strcpy(char *dest, const char *src)
 		*ptr++ = *src++;
 	}
 	*ptr = '\0';
-	return (*dest);
+	return (dest);
 }
