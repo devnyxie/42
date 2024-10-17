@@ -1,4 +1,5 @@
 /*
+ * The strlcat() function appends the NUL-terminated string src to the end of dest. It will append at most (size - strlen(dest) - 1) bytes, NUL-terminating the result.
  * size is the size of the destination buffer that should not be exceeded.
  * @return value: the total length of the string that would have been created if there was no size restriction (src + dest).
  */
