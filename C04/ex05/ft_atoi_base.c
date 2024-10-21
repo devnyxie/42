@@ -1,82 +1,110 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi_base.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tafanasi <tafanasi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/21 06:40:24 by tafanasi          #+#    #+#             */
+/*   Updated: 2024/10/21 06:40:26 by tafanasi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <unistd.h>
-#include <stdio.h>
 
-//first, let's replicate ft_atoi
-
-int	ft_atoi(char *str)
+// validates the base
+int	val_base(char *str, int size)
 {
-	// define vars
-	int response;
-	int neg_count;
-	int sign;
+	int	i;
+	int	j;
 
-	response = 0;
-	neg_count = 0;
-	sign = 1;
-	//skip spaces, tabs etc
-	while(*str == ' ' || *str == '\t' || *str == '\n' ||
-           *str == '\v' || *str == '\f' || *str == '\r')
+	i = 0;
+	if (size <= 1)
+		return (0);
+	while (str[i] != '\0')
 	{
-		str++;
+		j = i + 1;
+		while (str[j] != '\0')
+		{
+			if (str[j] == str[i])
+				return (0);
+			if (str[j] == '+' || str[j] == '-')
+				return (0);
+			j++;
+		}
+		i++;
 	}
+	return (1);
+}
 
-	//minus/plus handling
-	while(*str == '-' || *str == '+')
+int	count_base(char *base)
+{
+	int	i;
+
+	i = 0;
+	while (*base)
 	{
-		if(*str == '-')
+		i++;
+		base++;
+	}
+	return (i);
+}
+
+// returns the index of the character in the base, which is its value.
+int	get_value(char c, char *base)
+{
+	int	i;
+
+	i = 0;
+	while (base[i])
+	{
+		if (c == base[i])
+			return (i);
+		i++;
+	}
+	return (-1);
+}
+
+// two ** in order to access the value of str
+// return's '-1' or '1'
+int	ft_manage_sign(char **str)
+{
+	int	sign;
+	int	neg_count;
+
+	sign = 1;
+	neg_count = 0;
+	while (**str == '-' || **str == '+')
+	{
+		if (**str == '-')
 		{
 			neg_count++;
 		}
-		str++;
+		(*str)++;
 	}
-
-	//len zero handling?
-	
-	// negative count handling
-	if(neg_count % 2 != 0)
-	{
+	if (neg_count % 2 != 0)
 		sign = -1;
-	}
-
-	//output
-	while(*str >= '0' && *str <= '9')
-	{
-		response = response * 10 + (*str - '0');
-		str++;
-	}
-	return response * sign;
+	return (sign);
 }
 
-int main() {
-    // Test Case 1: Simple positive number
-    printf("Test 1: \"%s\" -> %d\n", "1234", ft_atoi("1234")); // Expected: 1234
+int	ft_atoi_base(char *str, char *base)
+{
+	int	base_len;
+	int	response;
+	int	sign;
+	int	current_value;
 
-    // Test Case 2: Simple negative number
-    printf("Test 2: \"%s\" -> %d\n", "-1234", ft_atoi("-1234")); // Expected: -1234
-
-    // Test Case 3: Number with leading whitespace
-    printf("Test 3: \"%s\" -> %d\n", "   42", ft_atoi("   42")); // Expected: 42
-
-    // Test Case 4: Multiple plus and minus signs
-    printf("Test 4: \"%s\" -> %d\n", "++-+42", ft_atoi("++-+42")); // Expected: -42
-
-    // Test Case 5: String with trailing characters
-    printf("Test 5: \"%s\" -> %d\n", "1234ab567", ft_atoi("1234ab567")); // Expected: 1234
-
-    // Test Case 6: String with mixed signs and numbers
-    printf("Test 6: \"%s\" -> %d\n", "---+--+1234ab567", ft_atoi("---+--+1234ab567")); // Expected: -1234
-
-    // Test Case 7: String with no numbers, only signs
-    printf("Test 7: \"%s\" -> %d\n", "++--", ft_atoi("++--")); // Expected: 0
-
-    // Test Case 8: Only whitespace
-    printf("Test 8: \"%s\" -> %d\n", "     ", ft_atoi("     ")); // Expected: 0
-
-    // Test Case 9: Empty string
-    printf("Test 9: \"%s\" -> %d\n", "", ft_atoi("")); // Expected: 0
-
-    // Test Case 10: String with no signs and letters
-    printf("Test 10: \"%s\" -> %d\n", "hello123", ft_atoi("hello123")); // Expected: 0
-
-    return 0;
+	response = 0;
+	base_len = count_base(base);
+	while (*str == ' ' || (*str >= '\t' && *str <= '\r'))
+		str++;
+	sign = ft_manage_sign(&str);
+	current_value = get_value(*str, base);
+	while (current_value != -1)
+	{
+		response = response * base_len + current_value;
+		str++;
+		current_value = get_value(*str, base);
+	}
+	return ((response * sign));
 }

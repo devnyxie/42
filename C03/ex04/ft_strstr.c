@@ -1,13 +1,15 @@
-/*
- * ft_strstr - Locates a substring within a string.
- *
- * *str_ptr - Pointer to the current character in the string (str).
- * *find_ptr - Pointer to the current character in the substring (to_find).
- * *match_start - Pointer to the start of the match.
- * All three are reset at each iteration if the char in the string and substring do not match.
- *
- * If there is a match (str_ptr and find_ptr are not null and the chars match), we increment both pointers until we reach the end of the substring:)
- */
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tafanasi <tafanasi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/17 20:00:12 by tafanasi          #+#    #+#             */
+/*   Updated: 2024/10/17 20:00:14 by tafanasi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 char	*ft_strstr(char *str, char *to_find)
 {
 	char	*str_ptr;
@@ -30,5 +32,5 @@ char	*ft_strstr(char *str, char *to_find)
 			return (match_start);
 		str++;
 	}
-	return (NULL);
+	return (0);
 }

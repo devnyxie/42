@@ -1,86 +1,80 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tafanasi <tafanasi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/21 06:28:58 by tafanasi          #+#    #+#             */
+/*   Updated: 2024/10/21 06:29:00 by tafanasi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <unistd.h>
 
-// @return: 0 if failed, 1 if success
-int val_base(char *str, int size)
+void	ft_putchar(char c)
 {
-    int i;
-    int j;
-
-
-    i = 0;
-    if(size <= 1)
-        return 0;
-    while(str[i] != '\0')
-    {
-        j = i + 1;
-        while(str[j] != '\0')
-        {
-            if(str[j] == str[i])
-                return 0;
-            if(str[j] == '+' || str[j] == '-')
-                return 0;
-            j++;
-        }
-        i++;
-    }
-    return 1;
+	write(1, &c, 1);
 }
 
-int count_base(char *base)
+int	ft_strlen(char *str)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while(*base)
-    {   
-        i++;
-        base++;
-    }
-
-    return (i);
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }
 
-void ft_putnbr_base(int nbr, char *base)
+int	val_base(char *str, int len)
 {
-    int base_c = count_base(base);
-    if(!val_base(base, base_c)) return;
+	int	i;
+	int	j;
 
-    if (nbr == -2147483648) {
-        write(1, "-", 1);
-        ft_putnbr_base(-(nbr / base_c), base);  // Divide by base, convert to positive and call recursively
-        char digit = base[-(nbr % base_c)]; // Handle the remainder as positive
-        write(1, &digit, 1);
-        return;
-    }
-
-    if (nbr < 0) {
-        write(1, "-", 1);
-        nbr = -nbr;
-    }
-
-    // Handle zero explicitly
-    if (nbr == 0) {
-        write(1, &base[0], 1);
-        return;
-    }
-
-    if (nbr >= base_c) {
-        ft_putnbr_base(nbr / base_c, base);
-    }
-    char digit = base[nbr % base_c]; // Convert digit to character. "% base_c" is used to limit the digit to the base.
-    write(1, &digit, 1);
+	i = 0;
+	if (len <= 1)
+		return (0);
+	while (str[i] != '\0')
+	{
+		j = i + 1;
+		while (str[j] != '\0')
+		{
+			if (str[j] == str[i])
+				return (0);
+			if (str[j] == '+' || str[j] == '-')
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
 }
 
-int main()
+void	ft_putnbr_base(int nbr, char *base)
 {
-    long long int a = -2147483648;
-    ft_putnbr_base(a, "01");
-    write(1, "\n", 1);
-    // ft_putnbr_base(42, "0123456789");
-    // write(1, "\n", 1);
-    // ft_putnbr_base(42, "poneyvif");
-    // write(1, "\n", 1);
-    // ft_putnbr_base(42, "0123456789ABCDEF");
-    // write(1, "\n", 1);
-    return 0;
+	int		len;
+	long	nb;
+
+	len = ft_strlen(base);
+	nb = nbr;
+	if (!val_base(base, len))
+		return ;
+	if (nb < 0)
+	{
+		ft_putchar('-');
+		nb = -nb;
+	}
+	if (nb >= len)
+	{
+		ft_putnbr_base(nb / len, base);
+	}
+	ft_putchar(base[nb % len]);
 }
+// int main()
+// {
+//     long long int a = -2147483648;
+//     ft_putnbr_base(a, "01");
+//     write(1, "\n", 1);
+//     return (0);
+// }
