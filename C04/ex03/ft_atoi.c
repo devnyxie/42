@@ -31,7 +31,7 @@ int ft_atoi(char *str)
         str++;
     }
 
-    // Determine the sign (result will be negative if there are odd number of '-' signs)
+    // Determine the sign (result will be negative if there is odd number of '-' signs)
     if (neg_count % 2 != 0) {
         sign = -1;
     }
