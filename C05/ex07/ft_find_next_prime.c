@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_prime.c                                      :+:      :+:    :+:   */
+/*   ft_find_next_prime.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tafanasi <tafanasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/21 13:18:31 by tafanasi          #+#    #+#             */
-/*   Updated: 2024/10/21 13:18:44 by tafanasi         ###   ########.fr       */
+/*   Created: 2024/10/21 13:18:54 by tafanasi          #+#    #+#             */
+/*   Updated: 2024/10/21 13:18:56 by tafanasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,19 @@ int	ft_is_prime(int nb)
 	while (i <= sqrt)
 	{
 		if (nb % i == 0)
-		{
 			return (0);
-		}
 		i++;
 	}
 	return (1);
+}
+
+int	ft_find_next_prime(int nb)
+{
+	if (nb <= 1)
+		return (2);
+	while (!ft_is_prime(nb))
+	{
+		nb++;
+	}
+	return (nb);
 }
