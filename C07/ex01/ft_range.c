@@ -26,7 +26,7 @@ int *ft_range(int min, int max)
 
 	i = 0;
 	size_needed = diff(min, max);
-	if(size_needed < 0)
+	if(size_needed <= 0)
 		return NULL;
 	// allocate size_needed memory
 	array = (int*)malloc(size_needed * sizeof(int));
@@ -41,59 +41,58 @@ int *ft_range(int min, int max)
 	}
 	return array;
 }
+// int main() {
+//     int min, max;
+//     int *result;
+//     int i, size;
 
-int main() {
-    int min, max;
-    int *result;
-    int i, size;
+//     // Test Case 1: Normal case
+//     min = 3;
+//     max = 7;
+//     result = ft_range(min, max);
+//     if (result) {
+//         size = max - min;
+//         printf("ft_range(%d, %d): ", min, max);
+//         for (i = 0; i < size; i++) {
+//             printf("%d ", result[i]);
+//         }
+//         printf("\n");
+//         free(result); // Don't forget to free the allocated memory!
+//     } else {
+//         printf("ft_range(%d, %d): NULL\n", min, max);
+//     }
 
-    // Test Case 1: Normal case
-    min = 3;
-    max = 7;
-    result = ft_range(min, max);
-    if (result) {
-        size = max - min;
-        printf("ft_range(%d, %d): ", min, max);
-        for (i = 0; i < size; i++) {
-            printf("%d ", result[i]);
-        }
-        printf("\n");
-        free(result); // Don't forget to free the allocated memory!
-    } else {
-        printf("ft_range(%d, %d): NULL\n", min, max);
-    }
+//     // Test Case 2: min equal to max
+//     min = 5;
+//     max = 5;
+//     result = ft_range(min, max);
+//     if (result == NULL) {
+//         printf("ft_range(%d, %d): NULL\n", min, max);
+//     }
 
-    // Test Case 2: min equal to max
-    min = 5;
-    max = 5;
-    result = ft_range(min, max);
-    if (result == NULL) {
-        printf("ft_range(%d, %d): NULL\n", min, max);
-    }
+//     // Test Case 3: min greater than max
+//     min = 10;
+//     max = 5;
+//     result = ft_range(min, max);
+//     if (result == NULL) {
+//         printf("ft_range(%d, %d): NULL\n", min, max);
+//     }
 
-    // Test Case 3: min greater than max
-    min = 10;
-    max = 5;
-    result = ft_range(min, max);
-    if (result == NULL) {
-        printf("ft_range(%d, %d): NULL\n", min, max);
-    }
+//     // Test Case 4: Large range
+//     min = -5;
+//     max = 5;
+//     result = ft_range(min, max);
+//     if (result) {
+//         size = max - min;
+//         printf("ft_range(%d, %d): ", min, max);
+//         for (i = 0; i < size; i++) {
+//             printf("%d ", result[i]);
+//         }
+//         printf("\n");
+//         free(result);
+//     } else {
+//         printf("ft_range(%d, %d): NULL\n", min, max);
+//     }
 
-    // Test Case 4: Large range
-    min = -5;
-    max = 5;
-    result = ft_range(min, max);
-    if (result) {
-        size = max - min;
-        printf("ft_range(%d, %d): ", min, max);
-        for (i = 0; i < size; i++) {
-            printf("%d ", result[i]);
-        }
-        printf("\n");
-        free(result);
-    } else {
-        printf("ft_range(%d, %d): NULL\n", min, max);
-    }
-
-    return 0;
-}
+//     return 0;
+// }
