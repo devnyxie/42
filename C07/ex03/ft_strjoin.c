@@ -13,16 +13,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int ft_strlen(char *str)
+int	ft_strlen(char *str)
 {
-	int count;
-	
+	int	count;
+
 	count = 0;
-	while(str[count] != '\0')
+	while (str[count] != '\0')
 	{
 		count++;
 	}
-	return(count);
+	return (count);
 }
 
 char	*ft_strcat(char *dest, const char *src)
@@ -45,18 +45,18 @@ char	*ft_strcat(char *dest, const char *src)
 }
 
 // func to count chars in an 2D array
-int ft_countchars(int size, char **strs, char *sep)
+int	ft_countchars(int size, char **strs, char *sep)
 {
-	int i;
-	int j;
-	int c;
+	int	i;
+	int	j;
+	int	c;
 
 	i = 0;
 	c = 0;
-	while(i < size)
+	while (i < size)
 	{
 		j = 0;
-		while(strs[i][j])
+		while (strs[i][j])
 		{
 			c++;
 			j++;
@@ -68,46 +68,41 @@ int ft_countchars(int size, char **strs, char *sep)
 	return (c);
 }
 
-void ft_transform(int size, char **strs, char *sep, char *allocated_str)
+void	ft_transform(int size, char **strs, char *sep, char *allocated_str)
 {
-    int i;
+	int	i;
 
-    allocated_str[0] = '\0';  // Initialize with empty string
-    i = 0;
-    while(i < size)
-    {
-        ft_strcat(allocated_str, strs[i]);
-        if (i < size - 1)
-            ft_strcat(allocated_str, sep);
-        i++;
-    }
+	allocated_str[0] = '\0';
+	i = 0;
+	while (i < size)
+	{
+		ft_strcat(allocated_str, strs[i]);
+		if (i < size - 1)
+			ft_strcat(allocated_str, sep);
+		i++;
+	}
 }
 
 // receive 2D arr of strings
 // return a simple string
-char *ft_strjoin(int size, char **strs, char *sep)
-{	
-	// char *allocated_str = (char *)malloc((ft_countchars(size, strs, sep) + 1) * sizeof(char));
-	// if (!allocated_str)
-	// 	return NULL;
-	// allocated_str[0] = '\0';
-	// ft_transform(size, strs, sep, allocated_str);
-	// return allocated_str;
-	if (size == 0) {
-        // Return an empty string if size is 0
-        return (char *)malloc(1);
-    }
+char	*ft_strjoin(int size, char **strs, char *sep)
+{
+	char	*allocated_str;
 
-    char *allocated_str = (char *)malloc((ft_countchars(size, strs, sep) + 1) * sizeof(char));
-    if (!allocated_str) {
-        return NULL; // Handle malloc failure
-    }
-    
-    allocated_str[0] = '\0'; // Initialize as an empty string
-    ft_transform(size, strs, sep, allocated_str);
-    return allocated_str; // Return the concatenated string
+	if (size == 0)
+	{
+		return ((char *)malloc(1));
+	}
+	allocated_str = (char *)malloc((ft_countchars(size, strs, sep) + 1)
+			* sizeof(char));
+	if (!allocated_str)
+	{
+		return (NULL);
+	}
+	allocated_str[0] = '\0';
+	ft_transform(size, strs, sep, allocated_str);
+	return (allocated_str);
 }
-
 // int main() {
 //     // Test Case 1: Normal case
 //     char *strs1[] = {"Hello", "world", "from", "ft_strjoin!"};
@@ -141,5 +136,5 @@ char *ft_strjoin(int size, char **strs, char *sep)
 //     printf("Result 5: '%s'\n", result5);
 //     free(result5); // Remember to free the allocated memory
 
-//     return 0;
+//     return (0);
 // }

@@ -1,84 +1,92 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tafanasi <tafanasi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/23 15:06:21 by tafanasi          #+#    #+#             */
+/*   Updated: 2024/10/23 15:07:01 by tafanasi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 
-int ft_strlen(char *str)
+int	ft_strlen(char *str)
 {
-    int i = 0;
-    while (str[i] != '\0')
-    {
-        i++;
-    }   
-    return (i);
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		i++;
+	}
+	return (i);
 }
 
-int count_words(char *str, char *charset){
-    int count = 0;
-    int in_word = 0;
+int	count_words(char *str, char *charset)
+{
+	int	count;
+	int	in_word;
 
-    while (*str)
-    {
-        if (*str == *charset)
-        {
-            in_word = 0; // We're now outside a word
-        }
-        else
-        {
-            if (in_word == 0) // We found a new word
-            {
-                in_word = 1;
-                count++;
-            }
-        }
-        str++;
-    }
-    return (count);
+	count = 0;
+	in_word = 0;
+	while (*str)
+	{
+		if (*str == *charset)
+		{
+			in_word = 0;
+		}
+		else
+		{
+			if (in_word == 0)
+			{
+				in_word = 1;
+				count++;
+			}
+		}
+		str++;
+	}
+	return (count);
 }
 
-char **ft_split(char *str, char *charset){
-    int i = 0;
-    int word_count = count_words(str, charset);
-    // allocate memory for an array of words (size of each word is unknown yet)
-    char **result = malloc((word_count + 1) * sizeof(char *));
-    char *start;
+// moulinette will not even reach this exercise, pushing it just in order to save the progress.
+char	**ft_split(char *str, char *charset)
+{
+	int		i;
+	int		word_count;
+	char	**result;
+	char	*start;
+	int		word_length;
 
-    while (*str)
-    {
-        // Skip delimiters at the beginning of the str
-        if (*str == *charset)
-        {
-            str++;
-            continue;
-        }
-
-        // Mark the start of the word
-        start = str;
-
-        // Move to the end of the word
-        while (*str && *str != *charset)
-        {
-            str++;
-        }
-
-        // Calculate the length of the word
-        int word_length = str - start;
-
-        // Allocate memory for the each word and copy it
-        result[i] = malloc((word_length + 1) * sizeof(char)); // +1 for '\0'
-        if (result[i] == NULL)
-        {
-            return NULL;
-        }
-
-        // Copy the word into result[i]
-        for (int j = 0; j < word_length; j++)
-        {
-            result[i][j] = start[j];
-        }
-        result[i][word_length] = '\0'; // Null-terminate the string
-
-        i++;
-    }
-
-    result[i] = NULL; // Null-terminate the array of strings
-    return result;
+	i = 0;
+	word_count = count_words(str, charset);
+	result = malloc((word_count + 1) * sizeof(char *));
+	while (*str)
+	{
+		if (*str == *charset)
+		{
+			str++;
+			continue ;
+		}
+		start = str;
+		while (*str && *str != *charset)
+		{
+			str++;
+		}
+		word_length = str - start;
+		result[i] = malloc((word_length + 1) * sizeof(char));
+		if (result[i] == NULL)
+		{
+			return (NULL);
+		}
+		for (int j = 0; j < word_length; j++)
+		{
+			result[i][j] = start[j];
+		}
+		result[i][word_length] = '\0';
+		i++;
+	}
+	result[i] = NULL;
+	return (result);
 }
-

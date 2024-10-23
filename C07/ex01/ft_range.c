@@ -13,33 +13,30 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int diff(int min, int max)
+int	diff(int min, int max)
 {
 	return (max - min);
 }
 
-int *ft_range(int min, int max)
+int	*ft_range(int min, int max)
 {
-	int size_needed;
-	int i;
-	int *array;
+	int	size_needed;
+	int	i;
+	int	*array;
 
 	i = 0;
 	size_needed = diff(min, max);
-	if(size_needed <= 0)
-		return NULL;
-	// allocate size_needed memory
-	array = (int*)malloc(size_needed * sizeof(int));
-	if(!array)
-		return NULL;
-	
-	//fill the array
-	while(i < size_needed)
+	if (size_needed <= 0)
+		return (NULL);
+	array = (int *)malloc(size_needed * sizeof(int));
+	if (!array)
+		return (NULL);
+	while (i < size_needed)
 	{
 		array[i] = min + i;
 		i++;
 	}
-	return array;
+	return (array);
 }
 // int main() {
 //     int min, max;
@@ -94,5 +91,5 @@ int *ft_range(int min, int max)
 //         printf("ft_range(%d, %d): NULL\n", min, max);
 //     }
 
-//     return 0;
+//     return (0);
 // }
