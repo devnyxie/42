@@ -35,6 +35,7 @@ int count_words(char *str, char *charset){
 
 char **ft_split(char *str, char *charset){
     int i = 0;
+    int j;
     int word_count = count_words(str, charset);
     // allocate memory for an array of words (size of each word is unknown yet)
     char **result = malloc((word_count + 1) * sizeof(char *));
@@ -42,6 +43,8 @@ char **ft_split(char *str, char *charset){
 
     while (*str)
     {
+        j = 0;
+
         // Skip delimiters at the beginning of the str
         if (*str == *charset)
         {
@@ -69,9 +72,10 @@ char **ft_split(char *str, char *charset){
         }
 
         // Copy the word into result[i]
-        for (int j = 0; j < word_length; j++)
+        while(j < word_length)
         {
             result[i][j] = start[j];
+            j++;
         }
         result[i][word_length] = '\0'; // Null-terminate the string
 
